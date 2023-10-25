@@ -147,6 +147,7 @@ return [
             'App\\Widgets\\Clients',
             'App\\Widgets\\Produits',
             'App\\Widgets\\Categories',
+            'App\\Widgets\\Commandes',
         ],
 
     ],
@@ -251,4 +252,5 @@ return [
            ],
        ]*/
     ],
+
 ];

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->string('statut');
-            $table->bigInteger('total_commande');
+            $table->boolean('traitee')->default(false);
+            $table->boolean('status')->default(false);
+            $table->bigInteger('total_commande')->nullbale();
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
 
-class Clients extends AbstractWidget
+class Commandes extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -22,16 +22,16 @@ class Clients extends AbstractWidget
      */
     public function run()
     {
-        $count = \App\Models\User::count();
-        $string = "Clients";
+        $count = \App\Models\Commande::where('traitee', 0)->count();
+        $string = 'Commandes';
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-group',
+            'icon'   => 'voyager-basket',
             'title'  => "{$count} {$string}",
-            'text'   => __('voyager::dimmer.user_text', ['count' => $count, 'string' => Str::lower($string)]),
+            'text'   => __('voyager::dimmer.post_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
-                'text' => "Voir les Clients",
-                'link' => route('voyager.users.index'),
+                'text' => 'Voir les Commandes',
+                'link' => route('commande.index'),
             ],
             'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
         ]));

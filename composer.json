@@ -6,12 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "barryvdh/laravel-dompdf": "^2.0",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
-        "tcg/voyager": "^1.6"
+        "tcg/voyager": "dev-fix-5441"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -60,5 +61,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/lamualfa/voyager.git"
+        }
+    ]
 }

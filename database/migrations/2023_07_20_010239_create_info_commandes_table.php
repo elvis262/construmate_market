@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Transaction;
+use App\models\InfoCommande;
 
 return new class extends Migration
 {
@@ -14,15 +14,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('info_commandes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('montant')->nullable()->default(0);
-            $table->string('mode_paiement');
-            $table->string('status');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('email');
+            $table->string('adresse');
+            $table->string('tel');
+            $table->string('tel_2')->nullable();
+            $table->longText('info_sup')->nullable();
             $table->timestamps();
         });
+
         Schema::table('commandes', function (Blueprint $table){
-            $table->foreignIdFor(Transaction::class)->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignIdFor(InfoCommande::class)->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -33,9 +38,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('info_commandes');
         Schema::table('commandes', function (Blueprint $table){
-            $table->dropForeignIdFor(Transaction::class);
+            $table->dropForeignIdFor(InfoCommande::class);
         });
     }
 };

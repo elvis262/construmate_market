@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Commune extends Model
 {
     use HasFactory;
-    /**
-     * Get all of the comments for the Commune
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function users()
+   
+
+    public function ville()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Ville::class);
+    }
+
+  
+    public function infoCommandes()
+    {
+        return $this->hasMany(InfoCommande::class);
     }
 }

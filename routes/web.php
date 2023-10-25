@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CustomOrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +20,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::get('commandes', [CustomOrderController::class, 'index'])->name('commande.index');
+    Route::post('update-order', [CustomOrderController::class, 'changeState'])->withoutMiddleware(['csrf']);
+    Route::get('search-order', [CustomOrderController::class, 'search'])->name('commande.search');
+    Route::get('order-archives', [CustomOrderController::class, 'archives'])->name('commande.archives');
+    Route::post('remove-order', [CustomOrderController::class, 'remove'])->name('commande.remove');
 });

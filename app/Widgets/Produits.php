@@ -30,7 +30,7 @@ class Produits extends AbstractWidget
             'title'  => "{$count} {$string}",
             'text'   => __('voyager::dimmer.post_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
-                'text' => 'Produits',
+                'text' => 'Voir les Produits',
                 'link' => route('voyager.produits.index'),
             ],
             'image' => voyager_asset('images/widget-backgrounds/01.jpg'),

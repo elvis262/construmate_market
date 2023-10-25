@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Commune;
+use App\Models\Ville;
 
 return new class extends Migration
 {
@@ -14,14 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('communes', function (Blueprint $table) {
+        Schema::create('villes', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->timestamps();
         });
 
-        Schema::table('info_commandes', function (Blueprint $table){
-            $table->foreignIdFor(Commune::class)->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+        Schema::table('communes', function (Blueprint $table){
+            $table->foreignIdFor(Ville::class)->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -32,9 +32,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('communes');
-        Schema::table('info_commandes', function (Blueprint $table) {
-            $table->dropForeignIdFor(Commune::class);
+        Schema::dropIfExists('villes');
+        Schema::table('communes', function (Blueprint $table){
+            $table->dropForeignIdFor(Ville::class);
         });
     }
 };
