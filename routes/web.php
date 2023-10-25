@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Middleware\CheckProductStock;
@@ -42,14 +43,17 @@ Route::get('/shop/{category?}/{id?}',[ProductController::class, 'shop'])->where(
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/cart',[CartController::class, 'cart'])->name('cart.product');
-
+    Route::get('/cart',[CartController::class, 'index'])->name('cart.index');
+    Route::get('/order',[CommandeController::class, 'index'])->name('commande.index');
+    
+    
+    Route::post('/commande',[CommandeController::class, 'processToCommande'])->name('commande.process');
     Route::post('/contact',[ContactController::class, 'contactUs'])->name('contact.contactUs');
     Route::post('/comment-product',[ProductController::class, 'comment'])->name('product.comment');
     Route::post('/add-to-cart',[CartController::class, 'addProductToCart'])->middleware([CheckProductStock::class])->name('cart.add')->withoutMiddleware(['csrf']);
     Route::post('/update-cart',[CartController::class, 'updateCart'])->middleware([CheckProductStock::class])->name('cart.update')->withoutMiddleware(['csrf']);
     Route::post('/remove-in-cart',[CartController::class, 'removeInCart'])->name('cart.remove')->withoutMiddleware(['csrf']);
-
+    
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

@@ -17,9 +17,9 @@ class caroussel extends Component
     public $informations = [];
     public function __construct()
     {
-        $info = InformationImage::select(['image','fin']);
-        $categ = PromotionProduit::select(['image','fin']);
-        $prod = PromotionCategorie::select(['image','fin']);
+        $info = InformationImage::select(['image','fin'])->whereNot('image', null)->orderby('created_at','desc');
+        $categ = PromotionProduit::select(['image','fin'])->whereNot('image', null)->orderby('created_at','desc');
+        $prod = PromotionCategorie::select(['image','fin'])->whereNot('image', null)->orderby('created_at','desc');
         $combinedQuery = $info->unionAll($categ)->unionAll($prod);
         $results = $combinedQuery->get()->toArray();
         foreach($results as $result){

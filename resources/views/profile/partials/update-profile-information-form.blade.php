@@ -36,12 +36,6 @@
         </div>
 
         <div>
-            <x-input-label for="commune" :value="__('Commune')" />
-            <x-select-input :pOptions="$communes" id="commune" class="block mt-1 w-full" name="commune" :value="$user->commune_id" required autocomplete="commune" />
-            <x-input-error :messages="$errors->get('commune')" class="mt-2" />
-        </div>
-
-        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />

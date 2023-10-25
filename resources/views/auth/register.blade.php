@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" class="bg-primaryWhite">
         @csrf
 
         <!-- Name -->
@@ -29,14 +29,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Commune -->
-
-        <div class="mt-4">
-            <x-input-label for="commune" :value="__('Commune')" />
-            <x-select-input :pOptions="$communes" id="commune" class="block mt-1 w-full" name="commune" :value="old('commune')" required  autocomplete="commune" />
-            <x-input-error :messages="$errors->get('commune')" class="mt-2" />
-        </div>
-
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
@@ -61,7 +53,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

@@ -20,24 +20,24 @@
             </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
-            <a href="{{route('cart.product')}}" class="btn border">
+            <a href="{{route('cart.index')}}" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="badge">{{$product_cart_number}}</span>
             </a>
         </div>
     </div>
 </div>
-<!-- Navbar Start -->
+
 <div class="container-fluid mb-5">
     <div class="row border-top px-xl-5">
-        @if($caroussel)
-            <x-category-dropdown :caroussel="$caroussel"></x-category-dropdown>
-            @else
-            <x-category-dropdown></x-category-dropdown>
-        @endif
+      @if(Request::path() == 'shop' or Request::path() == '/')
+         <x-category-dropdown caroussel="{{true}}"></x-category-dropdown>
+      @else
+         <x-category-dropdown></x-category-dropdown>
+      @endif
         <div class="col-lg-9">
             <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                <a href="" class="text-decoration-none d-block d-lg-none">
+                <a href="{{route('product.index')}}" class="text-decoration-none d-block d-lg-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">C</span>ONSTRUMATE</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -45,9 +45,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="{{route('product.index')}}" class="nav-item nav-link active">Home</a>
-                        <a href="{{route('product.shop')}}" class="nav-item nav-link">Shop</a>
-                        <a href="{{route('product.contact')}}" class="nav-item nav-link">Contact</a>
+                        <a href="{{route('product.index')}}" @class(['nav-item nav-link ', 'active' => Request::path() == '/'])>Acceuil</a>
+                        <a href="{{route('product.shop')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'shop' or explode('/',Request::path())[0] == 'product-details')])>Shop</a>
+                        <a href="{{route('cart.index')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'cart' or Request::path() == 'order')])>Mon panier</a>
+                        <a href="{{route('product.contact')}}" @class(['nav-item nav-link ', 'active' => Request::path() == 'contact-us'])>Contactez Nous</a>
                     </div>
                     @if(Auth::user())
                         <div class="navbar-nav ml-auto py-0">
@@ -58,17 +59,18 @@
                         </div>
                         @else
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{{route('login')}}" class="nav-item nav-link">Login</a>
-                            <a href="{{route('register')}}" class="nav-item nav-link">Register</a>
+                            <a href="{{route('login')}}" class="nav-item nav-link">Se connecter</a>
+                            <a href="{{route('register')}}" class="nav-item nav-link">S'inscrire</a>
                         </div>
                     @endif
 
                 </div>
             </nav>
-            @if($caroussel)
+
+            @if(Request::path() == 'shop' or Request::path() == '/')
                 <x-caroussel></x-caroussel>
             @endif
+
         </div>
     </div>
 </div>
-<!-- Navbar End -->

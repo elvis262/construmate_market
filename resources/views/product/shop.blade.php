@@ -1,16 +1,19 @@
-@php
-    $caroussel = true;
-@endphp
 @extends('layouts.master')
 
 @section('cart')
     <script src="{{asset('site/js/cart.js')}}"></script>
 @endsection
 
+@if ($categorie)
+    @section('title', strtoupper($products[0]->categorie_produit->nom))
+    @else
+    @section('title', 'Shop')
+@endif
+
 @section('content')
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-size:2rem">Shop</h1>
     </div>
 </div>
 
@@ -19,15 +22,16 @@
     <div class="row px-xl-5">
 
         <!-- Shop Product Start -->
-        <div class="col-lg-9 col-md-12 mx-auto">
-            <div class="row pb-3">
+        <div class="col-lg-12 col-md-12">
+            <div class="row pb-3 mx-auto">
                 @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <div class="col-lg-3 col-md-3 col-sm-12 pb-1">
                         <x-product :product="$product"></x-product>
                     </div>
                 @endforeach
                 <div class="col-12 pb-1">
-                    {{$products->onEachSide(1)->links()}}                  
+                    
+                    {{$products->onEachSide(5)->links()}}                  
                 </div>
             </div>
         </div>

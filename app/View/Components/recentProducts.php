@@ -15,7 +15,7 @@ class recentProducts extends Component
     public $recentProducts;
     public function __construct()
     {
-        $this->recentProducts = Produit::with(['categorie_produit','promotion_produit'])->orderby('created_at','desc')->limit(10)->get(); 
+        $this->recentProducts = Produit::with(['categorie_produit','promotion_produit'])->orderby('created_at','desc')->limit(12)->get(); 
     }
 
     /**

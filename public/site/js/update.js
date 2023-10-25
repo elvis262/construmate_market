@@ -1,4 +1,4 @@
-export default function update ($,data,target,success){
+export default function update ($,data,target,success,onComplete=null){
     $.ajax({
         url: '/update-cart',
         headers: {
@@ -13,23 +13,25 @@ export default function update ($,data,target,success){
             const prix = parseFloat(TdPrix.text()) 
             const total = parseFloat(TdTotal.text())
             
-            const totalPartiel = $('.total-partiel') //le prix total partiel du panier i.e sans la livraison
-            const totalFin = $('.total-fin') // le prix total du panier avec la livraison
+            const totalFinal = $('.total-final') //le prix total du panier avec la livraison
 
-            const TTotalPart = parseFloat(totalPartiel.text())
+            const Totaux = parseFloat(totalFinal.text())
             
             const obj = {
                 'prix':prix,
                 'total':total,
-                'totalPartiel':totalPartiel,
-                'totalFin':totalFin,
-                'TTotalPart':TTotalPart,
+                'totalFinal':totalFinal,
+                'Totaux':Totaux,
                 'TdTotal': TdTotal
             }
             success(obj)
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log('error :',jqXHR)
+        },complete: function() {
+            if (typeof onComplete === 'function') {
+                onComplete(); 
+            }
         }
     })
 }

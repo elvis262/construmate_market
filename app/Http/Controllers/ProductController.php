@@ -15,15 +15,15 @@ class ProductController extends Controller
     }
 
     public function shop(string $category=null,int $id=null){
-        
+        // dd($id);
         if($category != null){
             $products = Produit::where('categorie_produit_id','=',$id)
                                 ->paginate(12);
-            return view('product.shop')->with('products',$products);
+            return view('product.shop',compact('products'))->with('categorie',true);
         }
         $products = Produit::paginate(12);
         
-        return view('product.shop')->with('products',$products);
+        return view('product.shop', compact('products'))->with('categorie', false);
     }
     public function details(string $slug, int $id){
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         $name = $req->input('search');
         $products = Produit::where('nom', 'like', '%' . strtolower($name) . '%')->paginate(12);
-        return view('product.shop')->with('products',$products);
+        return view('product.shop',compact('products'))->with('categorie', false);
     }
 
     public function comment(CommentRequest $req)

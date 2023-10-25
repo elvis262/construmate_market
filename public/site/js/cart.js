@@ -1,4 +1,22 @@
 (function($){
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-full-width",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "2000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    
     const addToCart = (data)=>{
 
         $.ajax({
@@ -13,32 +31,22 @@
               const badge = $('.badge')
               let product_number = parseInt(badge.text())
               badge.text(product_number + 1)
-              $('div#alert-success').removeAttr('hidden').fadeIn('slow', function() {
-                // Après un délai de 2000ms (2 secondes), ajouter un fadeOut
-                $(this).delay(4000).fadeOut('slow', function() {
-                    // Après le fadeOut, ajouter l'attribut hidden
-                    $(this).attr('hidden', true);
-                    console.log('first')
-                });
-             })
-              console.log('succes: '+res);
+
+                toastr.success('Produit ajouté à votre panier')
+                console.log('succes: '+res);
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
                 const danger = $('div#alert-danger')
                 if(jqXHR.responseJSON.exception === "Illuminate\\Database\\QueryException"){
-                    danger.text('Vous avez déjà ajouté ce produit. Si vous voulez modifier la quantité, allez dans l\'onglet panier')
+                    toastr.info('Vous avez déjà ajouté ce produit. Si vous voulez modifier la quantité, allez dans l\'onglet panier');
+                    
                 }else if(jqXHR.responseJSON.message === "Unauthenticated."){
-                    danger.text('Connecter vous à votre compte utilisateur ou inscriver vous avant de procéder à cette opération')
+                    toastr.error('Connecter vous à votre compte utilisateur ou inscriver vous avant de procéder à cette opération');
+                }else{
+                    toastr.error(jqXHR.responseJSON.message)
                 }
-                danger.removeAttr('hidden').fadeIn('slow', function() {
-                    // Après un délai de 2000ms (2 secondes), ajouter un fadeOut
-                    $(this).delay(4000).fadeOut('slow', function() {
-                        // Après le fadeOut, ajouter l'attribut hidden
-                        $(this).attr('hidden', true);
-                        console.log('first')
-                    });
-                })
+              
                 console.log('Erreur: ',jqXHR);
                 
             }

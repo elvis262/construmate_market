@@ -11,10 +11,8 @@ class cartLines extends Component
     /**
      * Create a new component instance.
      */
-    public $cartProducts;
     public function __construct(public $products)
     {
-        $this->cartProducts = $products;
     }
 
     /**

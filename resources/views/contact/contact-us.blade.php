@@ -1,9 +1,12 @@
 @extends('layouts.master')
+
+@section('title', 'Contactez Nous')
 @section('content')
+
 
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Nous Contacter</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-size:2rem">Nous Contacter</h1>
         </div>
     </div>
     <div class="container-fluid pt-5">
@@ -36,9 +39,9 @@
             <div class="col-lg-5 mb-5">
                 <h5 class="font-weight-semi-bold mb-3">Entrer en contact avec nous</h5>
                 <p>{{$entreprise->description}}</p>
-                <div class="d-flex flex-column mb-3">
+                <div class="d-flex flex-column mb-3 mt-3">
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{$entreprise->email}}</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>{{$entreprise->contact}}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+225 {{$entreprise->contact}}</p>
                 </div>
             </div>
         </div>

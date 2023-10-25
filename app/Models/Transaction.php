@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'montant',
+        'mode_paiement',
+        'status'
+    ];
         /**
      * Get the commande associated with the Transaction
      *

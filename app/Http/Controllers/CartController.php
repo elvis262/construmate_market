@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 USE App\Models\Produit;
 class CartController extends Controller
 {
-    public function cart()
+    public function index()
     {
       $cart = auth()->user()->cart;
       $products = $cart->produits()->get();
-      return view('cart.cart', compact('products'));
+      return view('cart.index', compact('products'));
     }
 
     public function addProductToCart(Request $request)
@@ -48,11 +48,21 @@ class CartController extends Controller
 
     public function removeInCart(Request $request)
     {
-      $cart = auth()->user()->cart;
-      $cart->produits()->detach($request->input('produit_id'));
+      try {
+        
+        $cart = auth()->user()->cart;
+        $cart->produits()->detach($request->input('produit_id'));
 
-      return response()->json([
-        'success' => true,
-      ]);
+        return response()->json([
+          'success' => true,
+        ]);
+
+      } catch (\Throwable $th) {
+          return response()->json([
+            'success' => false,
+            'message' => 'Une erreur s\'est produite'
+          ]);
+      }
+      
     }
 }

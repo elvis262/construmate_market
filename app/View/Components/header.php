@@ -12,14 +12,13 @@ class header extends Component
      * Create a new component instance.
      */
     public $product_cart_number = 0;
-    public $caroussel;
-    public function __construct(public bool $showCaroussel)
+
+    public function __construct()
     {
         if (\Auth::user()) {
             $cart = auth()->user()->cart;
             $this->product_cart_number = $cart->produits()->count();
         }
-        $this->caroussel = $showCaroussel;
     }
 
     /**

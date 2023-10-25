@@ -10,6 +10,8 @@ $prom = promo($product)
 @endphp
 
 @extends('layouts.master')
+@section('title', strtoupper($product->nom))
+
 @section('cart')
     <script src="{{asset('site/js/cart.js')}}"></script>
     <script src="{{asset('site/js/quantity.js')}}" type="module"></script>
@@ -17,9 +19,11 @@ $prom = promo($product)
 @endsection
 
 @section('content')
-    <div class="container-fluid bg-secondary mb-5">
+
+
+<div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Détails du produit</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-size:2rem">Détails du produit</h1>
         </div>
     </div>
 
@@ -73,18 +77,18 @@ $prom = promo($product)
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" >
-                            <i class="fa fa-minus"></i>
+                            <button class="btn btn-primary btn-minus" @if($product->quantite_stock == 0) disabled @endif>
+                                <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="number" class="form-control bg-secondary text-center quantity-controller" value="1" data-limit="{{$product->quantite_stock}}">
+                        <input type="number" class="form-control bg-secondary text-center quantity-controller" data-limit="{{$product->quantite_stock}}" @if($product->quantite_stock == 0) value="0" @readonly(true) @else value="1" @endif>
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
+                            <button class="btn btn-primary btn-plus" @if($product->quantite_stock == 0) disabled @endif>
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3 add-to-cart" data-product="{{$product->id}}"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button class="btn btn-primary px-3 add-to-cart" data-product="{{$product->id}}"><i class="fa fa-shopping-cart mr-1"></i>Ajouter au panier</button>
                 </div>
             </div>
         </div>

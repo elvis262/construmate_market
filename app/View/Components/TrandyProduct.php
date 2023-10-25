@@ -15,7 +15,7 @@ class TrandyProduct extends Component
     public $trandyProducts;
     public function __construct()
     {
-        $this->trandyProducts = Produit::with(['categorie_produit','promotion_produit'])->orderby('nb_commande','desc')->limit(10)->get(); 
+        $this->trandyProducts = Produit::with(['categorie_produit','promotion_produit'])->orderby('nb_commande','desc')->limit(12)->get(); 
     }
 
     /**

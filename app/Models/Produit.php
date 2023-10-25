@@ -39,4 +39,14 @@ class Produit extends Model
     {
         return $this->hasMany(Avi::class);
     }
+
+    /**
+     * Get all of the commandes for the Produit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function commandes()
+    {
+        return $this->belongsToMany(Comment::class)>withPivot(['quantite','remise']);
+    }
 }

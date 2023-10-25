@@ -22,7 +22,7 @@ class CheckProductStock
         
         $produit = Produit::where('id',$produit_id)->first();
         
-        if($produit->quantite_stock < $quantite){
+        if($produit->quantite_stock < $quantite or $produit->quantite_stock == 0){
             return response()->json([
                 'message' => 'La quantité en stock est insuffisante'
             ], 500);

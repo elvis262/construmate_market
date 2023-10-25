@@ -5,15 +5,18 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Entreprise;
 
-class cartLine extends Component
+
+class BlocEntreprise extends Component
 {
     /**
      * Create a new component instance.
      */
-
-    public function __construct(public object $product)
+    public $entreprise;
+    public function __construct()
     {
+        $this->entreprise = Entreprise::get()->first();
     }
 
     /**
@@ -21,6 +24,6 @@ class cartLine extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cart-line');
+        return view('components.bloc-entreprise');
     }
 }

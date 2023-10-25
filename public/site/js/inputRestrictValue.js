@@ -21,10 +21,10 @@ export default function  inputRestriction($){
             const tr = input.parent().parent().parent()
             
             const success = function(data){ 
-                data.TTotalPart = data.TTotalPart - data.total                   
+                data.Totaux = data.Totaux - data.total                   
                 let totalProd = parseFloat(input.val()) * data.prix
                 data.TdTotal.text(totalProd)
-                data.totalPartiel.text(data.TTotalPart + totalProd)
+                data.totalFinal.text(data.Totaux + totalProd)
             }
 
             update($,data,tr,success)

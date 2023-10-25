@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CONSTRUMATE</title>
+    <title>CONSTRUMATE - @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -17,39 +17,29 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="{{asset('site/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{asset('site/css/style.css')}}" rel="stylesheet">
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/style.css','resources/css/toastr.css','resources/js/lib/owlcarousel/owl.carousel.min.js',
+    'resources/js/lib/easing/easing.min.js',
+    'resources/js/main.js', 'resources/js/lib/owlcarousel/assets/owl.carousel.min.css'])
 </head>
 
 <body>
-    <div class="alert alert-danger position-fixed top-0 right-0 p-3" id="alert-danger" role="alert" style="width: auto; z-index: 50" hidden>
-        Connectez à votre compte avant de procéder à cette opération
-    </div>
-    <div class="alert alert-success position-fixed top-0 right-0 p-3" id="alert-success" role="alert" style="width: auto; z-index:50" hidden>
-        Produit ajouté à votre panier
-    </div>
-    <x-header showCaroussel="{{isset($caroussel)}}"></x-header>
+    <x-header></x-header>
     @yield('content')
     @include('includes.footer')
 
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset("site/lib/easing/easing.min.js")}}"></script>
-    <script src="{{asset("site/lib/owlcarousel/owl.carousel.min.js")}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     @yield('owl')
     @yield('cart')
-    
-
-    <!-- Template Javascript -->
-    <script src="{{asset('site/js/main.js')}}"></script>
+    @yield('commande')
+    @yield('js')
 </body>
 
 </html>
