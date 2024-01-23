@@ -3056,7 +3056,17 @@ input[type="button"].btn-block {
   right: 0;
   left: auto;
 }
+.max-w-330 {
+  max-width: 330px;
+}
 
+.max-h-367 {
+  max-height: 367px;
+}
+
+.max-h-330 {
+  max-height: 330px;
+}
 @media (min-width: 576px) {
   .dropdown-menu-sm-left {
     right: auto;
@@ -3066,6 +3076,13 @@ input[type="button"].btn-block {
     right: 0;
     left: auto;
   }
+  .max-w-330 {
+    max-width: 100%;
+  }
+  .max-w-380 {
+    max-width: 100%;
+  }
+
 }
 
 @media (min-width: 768px) {
@@ -5905,7 +5922,7 @@ a.close.disabled {
 .carousel-control-prev:hover, .carousel-control-prev:focus,
 .carousel-control-next:hover,
 .carousel-control-next:focus {
-  color: #fff;
+  color: black;
   text-decoration: none;
   outline: 0;
   opacity: 0.9;

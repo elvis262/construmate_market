@@ -22,8 +22,8 @@ $prom = promo($product)
 
 
 <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-size:2rem">Détails du produit</h1>
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 6rem">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-size:1.5rem">Détails du produit</h1>
         </div>
     </div>
 
@@ -144,5 +144,30 @@ $prom = promo($product)
     <x-liked-product-caroussel></x-liked-product-caroussel>
 @endsection
 @section('owl')
-    <script src="{{asset("site/js/owl.js")}}"></script>
+<script>
+    $(document).ready(function(){
+  
+      $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:false,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplaySpeed:800,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+  });
+      
+   
+  });
+  </script>
 @endsection
