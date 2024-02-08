@@ -29,9 +29,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         
         $request->session()->regenerate();
-
-        session(['cart_product_number' => count(Auth::user()->cart->produits)]);
-       
         return redirect()->intended(route('product.index'));
     }
 

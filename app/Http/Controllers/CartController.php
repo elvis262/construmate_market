@@ -15,18 +15,24 @@ class CartController extends Controller
 
     public function addProductToCart(Request $request)
     {
-      $product_id = $request->input('produit_id');
-      $quantite = $request->input('quantite');
+
+        $product_id = $request->input('produit_id');
+        $quantite = $request->input('quantite');
+
+        $cart = auth()->user()->cart;
+        $product = $cart->produits()->where('id', $product_id)->first();
+
+        if ($product) {
+          $newQuantite = $product->pivot->quantite + $quantite;
+          $cart->produits()->updateExistingPivot($product_id, ['quantite' => $newQuantite]);
+        } else {
+          $cart->produits()->attach($product_id, ['quantite' => $quantite]);
+        }
+
+        return response()->json([
+          'success' => true,
+        ]);
       
-
-      $user = \Auth::user();
-      $cart = $user->cart ;
-      $cart->produits()->attach($product_id, ['quantite' => $quantite]);
-
-
-      return response()->json([
-        'success' => true,
-      ]);
     }
 
     public function updateCart(Request $request)

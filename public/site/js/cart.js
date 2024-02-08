@@ -1,4 +1,4 @@
-(function($){
+(function ($) {
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -16,8 +16,8 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    
-    const addToCart = (data)=>{
+
+    const addToCart = (data) => {
 
         $.ajax({
             url: '/add-to-cart',
@@ -27,36 +27,35 @@
             method: 'POST',
             dataType: 'json',
             data: data,
-            success: function(res){
-              const badge = $('.badge')
-              let product_number = parseInt(badge.text())
-              badge.text(product_number + 1)
+            success: function (res) {
+                const badge = $('.badge')
+                let product_number = parseInt(badge.text())
+                badge.text(product_number + data
+                    .quantite)
 
                 toastr.success('Produit ajouté à votre panier')
-                console.log('succes: '+res);
+                console.log('succes: ' + res);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
 
-                const danger = $('div#alert-danger')
-                if(jqXHR.responseJSON.exception === "Illuminate\\Database\\QueryException"){
+                if (jqXHR.responseJSON.exception === "Illuminate\\Database\\QueryException") {
                     toastr.info('Vous avez déjà ajouté ce produit. Si vous voulez modifier la quantité, allez dans l\'onglet panier');
-                    
-                }else if(jqXHR.responseJSON.message === "Unauthenticated."){
+
+                } else if (jqXHR.responseJSON.message === "Unauthenticated.") {
                     toastr.error('Connecter vous à votre compte utilisateur ou inscriver vous avant de procéder à cette opération');
-                }else{
+                } else {
                     toastr.error(jqXHR.responseJSON.message)
                 }
-              
-                console.log('Erreur: ',jqXHR);
-                
+
+                console.log('Erreur: ', jqXHR);
+
             }
         });
     }
 
-    $(".add-to-cart").on('click',(e)=>{
-        console.log($(e.target).parent().find('input'))
+    $(".add-to-cart").on('click', (e) => {
         const data = {
-            'produit_id':$(e.target).data('product'),
+            'produit_id': $(e.target).data('product'),
             'quantite': $(e.target).parent().find('input').length !== 0 ? $(e.target).parent().find('input').val() : 1
         }
         addToCart(data)

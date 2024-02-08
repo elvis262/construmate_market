@@ -3,7 +3,7 @@
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="{{route('product.index')}}" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">C</span>ONSTRUMATE</h1>
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">C</span>RenoBat+</h1>
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left mx-auto">
@@ -19,33 +19,29 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-3 col-6 text-right">
-            <a href="{{route('cart.index')}}" class="btn border">
-                <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="badge">{{$product_cart_number}}</span>
-            </a>
+        <div class="col-lg-3 col-6 text-right ">
+            <livewire:cart/>
         </div>
+
     </div>
 </div>
 
-<div class="container-fluid mb-5">
-    <div class="row border-top px-xl-5">
-      @if(Request::path() == 'shop' or Request::path() == '/')
-         <x-category-dropdown caroussel="{{true}}"></x-category-dropdown>
-      @else
-         <x-category-dropdown></x-category-dropdown>
-      @endif
-        <div class="col-lg-9">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+<div class="container-fluid mb-5" style="height: auto">
+    <div class="row border-top px-xl-5" >
+
+        
+        <div class="col-lg-12" >
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0" style="height: 4rem;">
                 <a href="{{route('product.index')}}" class="text-decoration-none d-block d-lg-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">C</span>ONSTRUMATE</h1>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="height: 65px;">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{{route('product.index')}}" @class(['nav-item nav-link ', 'active' => Request::path() == '/'])>Acceuil</a>
+                        <x-category-dropdown></x-category-dropdown>
                         <a href="{{route('product.shop')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'shop' or explode('/',Request::path())[0] == 'product-details')])>Shop</a>
                         <a href="{{route('cart.index')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'cart' or Request::path() == 'order')])>Mon panier</a>
                         <a href="{{route('product.contact')}}" @class(['nav-item nav-link ', 'active' => Request::path() == 'contact-us'])>Contactez Nous</a>
@@ -67,10 +63,10 @@
                 </div>
             </nav>
 
-            @if(Request::path() == 'shop' or Request::path() == '/')
+            
+            @if(Request::path() == '/')
                 <x-caroussel></x-caroussel>
             @endif
-
         </div>
     </div>
 </div>

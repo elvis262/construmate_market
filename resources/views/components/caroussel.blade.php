@@ -1,7 +1,7 @@
 <div id="header-carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         @for($i=0;$i<count($informations);$i++)
-            <div @class(['carousel-item', 'active' => $i == 0]) style="height: 410px;">
+            <div @class(['carousel-item', 'active' => $i == 0]) style="height: calc(70vh - 65px)">
                 <img class="img-fluid" src="{{env("ADMIN_LOCATION")."storage/".$informations[$i]['image']}}" alt="Image">
             </div>
         @endfor

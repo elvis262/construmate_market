@@ -2,12 +2,17 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
-
+/**
+ *   --primary: #ffd60e;
+  --secondary: #bf7008;
+  --tertiary: #bf7008;
+  --secondary2: #f0f3f2
+ */
 const colors = {
-    'primary': "#ffd000",
+    'primary': "#ffd60e",
     'secondary': "#edca2a",
-   'tertiary': "#947902",
-    'secondary2':" #faf8f7",
+   'tertiary': "#bf7008",
+    'secondary2':"#f0f3f2",
     'primaryWhite': '#fffefeed'
 };
 
@@ -22,7 +27,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Montserrat', 'sans-serif'],
             },
             colors: colors
         },

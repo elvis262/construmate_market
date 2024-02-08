@@ -79,8 +79,8 @@ toastr.error('Les produits que vous aviez dans\
   margin:10,
   nav:false,
   autoplay:true,
-  autoplayTimeout:3000,
-  autoplaySpeed:800,
+  autoplayTimeout:10000,
+  autoplaySpeed:5000,
   responsive:{
       0:{
           items:1
