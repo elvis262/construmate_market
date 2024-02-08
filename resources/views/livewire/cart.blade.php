@@ -1,6 +1,6 @@
 <div>
     <div class="cart-wrapper">
-        <a href="{{route('cart.index')}}" class="btn border">
+        <a href="{{route('cart.index')}}" class="btn border" wire:navigate>
             <i class="fas fa-shopping-cart text-primary"></i>
             <span class="badge">{{$product_cart_product_number}}</span>
             
@@ -42,7 +42,7 @@
                             </div>
                         </div>
         
-                        <span href="" class="si-remove-cart-item">
+                        <span class="si-remove-cart-item" wire:click="removeProduct({{$item->id}})" :key="$item->id">
                             <svg class="si-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 32 32"><path d="M17.884 15.421l7.074-7.074c0.534-0.534 0.534-1.335 0-1.868s-1.335-0.534-1.868 0l-7.074 7.074-7.074-7.074c-0.534-0.534-1.335-0.534-1.868 0s-0.534 1.335 0 1.868l7.074 7.074-7.074 7.074c-0.534 0.534-0.534 1.335 0 1.868 0.267 0.267 0.534 0.4 0.934 0.4s0.667-0.133 0.934-0.4l7.074-7.074 7.074 7.074c0.267 0.267 0.667 0.4 0.934 0.4s0.667-0.133 0.934-0.4c0.534-0.534 0.534-1.335 0-1.868l-7.074-7.074z"></path></svg>
                         </span>
                     </div>

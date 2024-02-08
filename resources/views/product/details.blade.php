@@ -13,8 +13,8 @@ $prom = promo($product)
 @section('title', strtoupper($product->nom))
 
 @section('cart')
-    <script src="{{asset('site/js/cart.js')}}"></script>
-    <script src="{{asset('site/js/quantity.js')}}" type="module"></script>
+    <script src="{{asset('site/js/addToCart.js')}}"></script>
+    <script src="{{asset('site/js/quantityManager.js')}}" type="module"></script>
     <script src="{{asset('site/js/star.js')}}" type="module"></script>
 @endsection
 
@@ -71,7 +71,6 @@ $prom = promo($product)
                 <h3 class="font-weight-semi-bold mb-4"><span class="text-muted">Prix :</span> {{$product->prix}} FRCFA</h3>
 
                 @endif
-                <h3 class="font-weight-semi-bold mb-4 stock">Stock : <span class="text-muted ml-2">{{$product->quantite_stock}}</span></h3>
                 <p class="mb-4">{{$product->description}}</p>
 
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -81,7 +80,7 @@ $prom = promo($product)
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="number" class="form-control bg-secondary text-center quantity-controller" data-limit="{{$product->quantite_stock}}" @if($product->quantite_stock == 0) value="0" @readonly(true) @else value="1" @endif>
+                        <input type="number" class="form-control bg-secondary text-center quantity-controller" data-limit="{{$product->quantite_stock}}" @if($product->quantite_stock == 0) value="0" @readonly(true) @else value="1" @endif maxLength="{{$product->quantite_stock}}">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-plus" @if($product->quantite_stock == 0) disabled @endif>
                                 <i class="fa fa-plus"></i>
@@ -169,5 +168,7 @@ $prom = promo($product)
       
    
   });
+
+  
   </script>
 @endsection

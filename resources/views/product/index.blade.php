@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('cart')
-<script src="{{asset('site/js/cart.js')}}"></script>
+<script src="{{asset('site/js/addToCart.js')}}"></script>
 @endsection
 
 @section('title', 'ACCEUIL')
@@ -72,10 +72,10 @@ toastr.error('Les produits que vous aviez dans\
 
 @section('owl')
 <script>
-  $(document).ready(function(){
-
-    $('.owl-carousel').owlCarousel({
-  loop:true,
+  $(function(){
+    document.addEventListener('livewire:load', function () {
+      $('.owl-carousel').owlCarousel({
+  loop:false,
   margin:10,
   nav:false,
   autoplay:true,
@@ -93,6 +93,8 @@ toastr.error('Les produits que vous aviez dans\
       }
   }
 });
+});
+    
     
  
 });

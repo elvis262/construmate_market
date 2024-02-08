@@ -6,19 +6,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-    --blue: #007bff;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #e83e8c;
-    --red: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #28a745;
-    --teal: #20c997;
-    --cyan: #17a2b8;
     --white: #f0f3f2;
-    --gray: #6c757d;
-    --gray-dark: #343a40;
     --primary: #ffd60e;
     --secondary: #bf7008;
     --tertiary: #bf7008;
@@ -56,7 +44,7 @@ html {
 
 /* Cacher les flèches de contrôle pour l'input de type "number" */
 input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-outer-spin- {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -2801,16 +2789,15 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary:hover {
-    /* color: #fff; */
     background-color: var(--secondary);
-    border-color: var(--tertiary);
+    border-color: var(--secondary);
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
     color: #fff;
     background-color: var(--secondary);
-    border-color: var(--tertiary);
+    border-color: var(--secondary);
     box-shadow: 0 0 0 0.2rem rgba(183, 138, 135, 0.5);
 }
 
@@ -2825,8 +2812,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
     color: var(--white);
-    background-color: #c17a74;
-    border-color: #bd726b;
+    background-color: var(--secondary);
+    border-color: var(--secondary);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,

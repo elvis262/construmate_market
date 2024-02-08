@@ -1,3 +1,3 @@
 @foreach ($products as $product)
-    <x-cart-line :product="$product"/>
+    <livewire:cart-line :product="$product" key="{{$product->id}}cart"/>
 @endforeach

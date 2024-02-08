@@ -9,7 +9,8 @@ use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Middleware\CheckProductStock;
-
+use App\Livewire\Product;
+use App\Livewire\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/_product', Product::class);
+Route::get('/_cart', Cart::class);
+
 
 require __DIR__.'/auth.php';

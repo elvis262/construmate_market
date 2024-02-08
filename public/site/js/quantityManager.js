@@ -1,11 +1,13 @@
 import inputRestriction from './inputRestrictValue.js'
 
 (function ($){
-    const stock = parseFloat($('.stock span').text()) 
+
     $('.quantity button').on('click', function (){
         let button = $(this);
+        let input = button.parent().parent().find('input[type="number"]');
+        let stock = input.attr('maxLength');
+        
         let oldValue = parseFloat(button.parent().parent().find('input').val());
-        console.log(oldValue);
         let newVal = 1;
         if (button.hasClass('btn-plus')) {
             if(stock !== oldValue){

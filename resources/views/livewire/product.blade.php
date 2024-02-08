@@ -1,9 +1,7 @@
 @php
 $prom = promo($product);
 @endphp
-
-
-
+<div>
 <div class="card product-item border-0 mb-4">
   <a href="{{route('product.details',['slug'=>Str::slug($product->nom), 'id'=> $product->id])}}" wire:navigate>
     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"
@@ -47,7 +45,9 @@ $prom = promo($product);
     </div>
   </div>
   <div class="card-footer d-flex justify-content-between bg-light border">
-    <button class="btn btn-sm text-dark p-0 add-to-cart mx-auto" data-product="{{$product->id}}"><i
+    <button class="btn btn-sm text-dark p-0 mx-auto" type="button" wire:click="addProduct({{$product->id}})" :key="$product->id"><i
         class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</button>
   </div>
 </div>
+</div>
+

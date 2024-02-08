@@ -1,8 +1,5 @@
 @extends('layouts.master')
 
-@section('cart')
-<script src="{{asset('site/js/cart.js')}}"></script>
-@endsection
 
 @if ($categorie)
 @section('title', strtoupper($products[0]->categorie_produit->nom))
@@ -26,7 +23,7 @@
       <div class="row pb-3 mx-auto">
         @foreach ($products as $product)
         <div class="col-lg-3 col-md-3 col-sm-12 pb-1">
-          <x-product :product="$product"></x-product>
+          <livewire:product :product="$product" :key="$product->key"/>
         </div>
         @endforeach
         <div class="col-12 pb-1">

@@ -42,21 +42,21 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{{route('product.index')}}" @class(['nav-item nav-link ', 'active' => Request::path() == '/'])>Acceuil</a>
                         <x-category-dropdown></x-category-dropdown>
-                        <a href="{{route('product.shop')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'shop' or explode('/',Request::path())[0] == 'product-details')])>Shop</a>
-                        <a href="{{route('cart.index')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'cart' or Request::path() == 'order')])>Mon panier</a>
-                        <a href="{{route('product.contact')}}" @class(['nav-item nav-link ', 'active' => Request::path() == 'contact-us'])>Contactez Nous</a>
+                        <a href="{{route('product.shop')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'shop' or explode('/',Request::path())[0] == 'product-details')]) wire:navigate>Shop</a>
+                        <a href="{{route('cart.index')}}" @class(['nav-item nav-link ', 'active' => (Request::path() == 'cart' or Request::path() == 'order')]) wire:navigate>Mon panier</a>
+                        <a href="{{route('product.contact')}}" @class(['nav-item nav-link ', 'active' => Request::path() == 'contact-us']) wire:navigate>Contactez Nous</a>
                     </div>
                     @if(Auth::user())
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{{route('profile.edit')}}" class="nav-item nav-link">
+                            <a href="{{route('profile.edit')}}" class="nav-item nav-link" wire:navigate>
                                 <i class="fas fa-user text-primary"></i>
                                 {{Auth::user()->prenom}}
                             </a>
                         </div>
                         @else
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{{route('login')}}" class="nav-item nav-link">Se connecter</a>
-                            <a href="{{route('register')}}" class="nav-item nav-link">S'inscrire</a>
+                            <a href="{{route('login')}}" class="nav-item nav-link" wire:navigate>Se connecter</a>
+                            <a href="{{route('register')}}" class="nav-item nav-link" wire:navigate>S'inscrire</a>
                         </div>
                     @endif
 

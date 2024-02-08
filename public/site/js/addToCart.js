@@ -28,27 +28,14 @@
             dataType: 'json',
             data: data,
             success: function (res) {
-                const badge = $('.badge')
-                let product_number = parseInt(badge.text())
-                badge.text(product_number + data
-                    .quantite)
-
-                toastr.success('Produit ajouté à votre panier')
-                console.log('succes: ' + res);
+                Livewire.dispatch('productAdded',{message: 'Le produit a été ajouté au panier'})
             },
             error: function (jqXHR, textStatus, errorThrown) {
-
-                if (jqXHR.responseJSON.exception === "Illuminate\\Database\\QueryException") {
-                    toastr.info('Vous avez déjà ajouté ce produit. Si vous voulez modifier la quantité, allez dans l\'onglet panier');
-
-                } else if (jqXHR.responseJSON.message === "Unauthenticated.") {
+                if (jqXHR.responseJSON.message === "Unauthenticated.") {
                     toastr.error('Connecter vous à votre compte utilisateur ou inscriver vous avant de procéder à cette opération');
                 } else {
-                    toastr.error(jqXHR.responseJSON.message)
+                    toastr.error('Connecter vous à votre compte utilisateur ou inscriver vous avant de procéder à cette opération');
                 }
-
-                console.log('Erreur: ', jqXHR);
-
             }
         });
     }
